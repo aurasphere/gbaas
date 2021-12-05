@@ -1,2 +1,2 @@
 # gbaas
-GBA emulator as a service.
+GB emulator as a service.
