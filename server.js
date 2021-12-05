@@ -11,6 +11,7 @@ app.listen(PORT, () => {
 
 app.get("/state", async (req, res) => {
   const responseContent = await gbaService.getScreen();
+  res.set('Cache-Control', 'private, max-age=0, no-store');
   res.contentType("image/gif");
   res.send(responseContent);
 });
