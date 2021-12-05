@@ -1,5 +1,5 @@
 import express from "express";
-import gbaService from "./gba-service.js";
+import gbService from "./gb-service.js";
 import path from "path";
 const app = express();
 
@@ -10,8 +10,8 @@ app.listen(PORT, () => {
 });
 
 app.get("/state", async (req, res) => {
-  const responseContent = await gbaService.getScreen();
-  res.set('Cache-Control', 'private, max-age=0, no-store');
+  const responseContent = await gbService.getScreen();
+  res.set("Cache-Control", "private, max-age=0, no-store");
   res.contentType("image/gif");
   res.send(responseContent);
 });
@@ -19,7 +19,7 @@ app.get("/state", async (req, res) => {
 app.get("/buttons/:button", (req, res) => {
   const button = req.params.button;
   const callback = req.query.callback;
-  gbaService.pressKey(button);
+  gbService.pressKey(button);
 
   if (callback) {
     res.redirect(callback);
